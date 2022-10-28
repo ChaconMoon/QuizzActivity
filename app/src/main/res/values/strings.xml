@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">GeoQuizz</string>
+    <string name="question_australia">Cambara is the capital of Australia</string>
+    <string name="true_button">TRUE</string>
+    <string name="false_button">FALSE</string>
+    <string name="correct_toast">Correct</string>
+    <string name="incorrct_toast">Incorrect</string>
+    <string name="next_button">NEXT</string>
+    <string name="question_oceans">The Pacific Ocean is larger than the Atlantic Ocean</string>
+    <string name="question_mideast">The Suez Cananl connects the Red Sea and the Indian Ocean</string>
+    <string name="question_africo">The source of the Nile River is in Egypt</string>
+    <string name="question_americas">The Amazon River is the longest river in the Americas</string>
+    <string name="question_asia">Lake Baikal is the world\'s oldest and deepest freshwater lake</string>
+    <string name="question_text_view"></string>
+    <string name="previous_button">PREVIOUS</string>
+    <string name="question_answer">this question was answered before</string>
+    <string name="example_string">example_string</string>
+    <string name="score">Score: </string>
+    <string name="answered_question">This Question was Answered, Please Answer the Next Question</string>
+</resources>
