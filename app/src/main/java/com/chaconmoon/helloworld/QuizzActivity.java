@@ -190,6 +190,7 @@ public class QuizzActivity extends AppCompatActivity {
         qList.add(new Question(R.string.question_africo,false));
         qList.add(new Question(R.string.question_americas,true));
         qList.add(new Question(R.string.question_asia,true));
+        qList.add(new Question(R.string.question_montains,true));
         for (int i = 0; i < qList.size(); i++) {
             answers.add(null);
         }

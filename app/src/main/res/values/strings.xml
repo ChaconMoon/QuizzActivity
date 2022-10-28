@@ -11,6 +11,7 @@
     <string name="question_africo">The source of the Nile River is in Egypt</string>
     <string name="question_americas">The Amazon River is the longest river in the Americas</string>
     <string name="question_asia">Lake Baikal is the world\'s oldest and deepest freshwater lake</string>
+    <string name="question_montains">Everest is the highest montain in the world</string>
     <string name="question_text_view"></string>
     <string name="previous_button">PREVIOUS</string>
     <string name="question_answer">this question was answered before</string>
