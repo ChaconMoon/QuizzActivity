@@ -1,5 +1,6 @@
 package com.chaconmoon.helloworld;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +17,15 @@ import java.util.ArrayList;
 public class QuizzActivity extends AppCompatActivity {
     private static final String KEY_INDEX = "index";
     private static final String TAG = "QuizActivity";
+    private static final int REQUEST_CODE_CHEAT = 0;
+    private static final String EXTRA_ANSWER_SHOW = "com.chaconmoon.helloworld.answer_show";
 
     private TextView nQuestionTextView;
     ArrayList<Question> qList = new ArrayList<>();
     ArrayList<Boolean> answers = new ArrayList<>();
     private int nCurrentIndex =0;
     private int answeredQuestions;
+    private boolean nIsCheater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,7 @@ public class QuizzActivity extends AppCompatActivity {
         ImageButton nNextButton = findViewById(R.id.next_button);
         nNextButton.setOnClickListener(view -> {
             nCurrentIndex = (nCurrentIndex +1)%qList.get(nCurrentIndex).getTextRedId();
+            nIsCheater=false;
             updateQuestion();
         });
 
@@ -81,7 +86,7 @@ public class QuizzActivity extends AppCompatActivity {
         nCheatButton.setOnClickListener(view -> {
            boolean answerIsTrue = qList.get(nCurrentIndex).isAnswerTrue();
            Intent intent = CheatActivity.newintent(QuizzActivity.this,answerIsTrue);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE_CHEAT);
         });
 
         StartQuizz();
@@ -150,6 +155,21 @@ public class QuizzActivity extends AppCompatActivity {
         savedInstanceState.putInt(KEY_INDEX,nCurrentIndex);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_CODE_CHEAT) {
+            if (data == null) {
+                return;
+            }
+            nIsCheater = CheatActivity.wasAnswerShow(data);
+        }
+    }
+
+
     private void StartQuizz() {
         updateQuestion();
     }
@@ -164,7 +184,11 @@ public class QuizzActivity extends AppCompatActivity {
 
         int messageResId;
 
-        if(userPressedTrue == answerIsTrue){
+        if (nIsCheater){
+            messageResId=R.string.judgment_toast;
+            Toast.makeText(this,messageResId, Toast.LENGTH_SHORT).show();
+
+        } else if(userPressedTrue == answerIsTrue){
             messageResId = R.string.correct_toast;
             answers.set(nCurrentIndex,true);
         } else {

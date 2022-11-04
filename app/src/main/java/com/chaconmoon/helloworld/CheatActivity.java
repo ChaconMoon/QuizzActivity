@@ -10,10 +10,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CheatActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_IS_TRUE = "com.chaconmoon.geoquizz.answer_is_true";
+    private static final String EXTRA_ANSWER_SHOW = "com.chaconmoon.helloworld.answer_show";
+
     public static Intent newintent(Context packageContext,boolean answerIsTrue){
         Intent intent = new Intent(packageContext, CheatActivity.class);
         intent.putExtra(EXTRA_ANSWER_IS_TRUE,answerIsTrue);
         return intent;
+    }
+    private void setAnswerShowResult(boolean isAnswerShow){
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_ANSWER_SHOW,true);
+        setResult(RESULT_OK,intent);
+    }
+    public  static boolean wasAnswerShow(Intent result){
+        return result.getBooleanExtra(EXTRA_ANSWER_SHOW,false);
+
     }
     private boolean nAnswerIsTrue;
     @Override
@@ -31,6 +42,7 @@ public class CheatActivity extends AppCompatActivity {
             } else {
                 nAnswerTextView.setText(R.string.false_button);
             }
+            setAnswerShowResult(true);
         });
 
     }
